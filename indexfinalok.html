@@ -1,0 +1,610 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>KUPS JAYA BERKAH FARM — Landing Page</title>
+  <meta name="description" content="KUPS Peternakan Jaya Berkah Farm — Agroforestry & peternakan kambing di Lampung Selatan. Pesan via WhatsApp.">
+  <meta name="theme-color" content="#0b6b3a">
+  <style>
+    /* ---------- RESET & BASE ---------- */
+    :root{
+      --green:#0b6b3a; /* dark green */
+      --mint:#2fa77a;  /* blue-green accent */
+      --sky:#3fb0a6;   /* soft blue-green */
+      --bg:#ffffff;
+      --muted:#6b6b6b;
+      --card-radius:14px;
+      --glass: rgba(255,255,255,0.7);
+      --glass-2: rgba(255,255,255,0.85);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      color:#123; background:var(--bg); -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+    }
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;height:auto;display:block}
+
+    /* ---------- LAYOUT ---------- */
+    header{
+      position:fixed;left:0;right:0;top:0;z-index:40;backdrop-filter: blur(6px);
+      background:linear-gradient(180deg, rgba(255,255,255,0.36), rgba(255,255,255,0.12));
+      border-bottom:1px solid rgba(11,107,58,0.06);
+    }
+    .container{max-width:1200px;margin:0 auto;padding:0 20px}
+    nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:46px;height:46px;border-radius:10px;background:linear-gradient(135deg,var(--mint),var(--sky));display:flex;align-items:center;justify-content:center;color:white;font-weight:700}
+    .navlinks{display:flex;gap:18px;align-items:center}
+    .navlinks a{font-size:15px;color:var(--green);padding:8px;border-radius:8px}
+    .cta-wa{background:linear-gradient(90deg,var(--mint),var(--green));color:white;padding:9px 14px;border-radius:10px;font-weight:600;display:inline-flex;align-items:center;gap:8px}
+
+    /* ---------- HERO ---------- */
+    .hero{
+      min-height:80vh;padding-top:90px;position:relative;display:flex;align-items:center;}
+    .hero .bg{position:absolute;inset:0;background-image:linear-gradient(180deg, rgba(11,107,58,0.12), rgba(255,255,255,0.2)), url('https://images.unsplash.com/photo-1501004318641-b39e6451bec6?q=80&w=1800&auto=format&fit=crop&ixlib=rb-4.0.3&s=2d9e3b8b3c4e7d1970b3f4a2b5f3d5a2');background-size:cover;background-position:center;filter:contrast(0.95) saturate(1.08);}
+    .overlay{position:absolute;inset:0;background:linear-gradient(180deg, rgba(0,0,0,0.10), rgba(255,255,255,0.02));}
+    .hero-inner{position:relative;z-index:2;padding:60px 0}
+    .hero-grid{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center}
+    .headline{background:var(--glass);padding:28px;border-radius:18px;box-shadow:0 8px 30px rgba(11,107,58,0.06)}
+    .headline h1{margin:0;font-size:38px;color:var(--green);letter-spacing:0.2px}
+    .headline p{margin:12px 0 20px;color:#163;opacity:0.95}
+    .hero-ctas{display:flex;gap:12px}
+    .btn{padding:12px 16px;border-radius:10px;font-weight:700;cursor:pointer;border:0}
+    .btn-primary{background:linear-gradient(90deg,var(--mint),var(--green));color:#fff}
+    .btn-ghost{background:transparent;border:1px solid rgba(11,107,58,0.12);color:var(--green)}
+
+    /* ---------- SECTIONS ---------- */
+    section{padding:72px 0}
+    .card{background:var(--glass-2);padding:18px;border-radius:12px}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .product{background:white;border-radius:12px;padding:12px;box-shadow:0 6px 18px rgba(11,107,58,0.04)}
+    .product h4{margin:8px 0 4px;color:var(--green)}
+    .meta{font-size:14px;color:var(--muted)}
+
+    /* ---------- TESTIMONIALS ---------- */
+    .testi{display:flex;gap:12px;align-items:center}
+    .avatar{width:56px;height:56px;border-radius:50%;overflow:hidden;background:#eee}
+
+    /* ---------- FOOTER ---------- */
+    footer{padding:36px 0;background:linear-gradient(180deg, rgba(11,107,58,0.02), rgba(11,107,58,0.01));}
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width:980px){.hero-grid{grid-template-columns:1fr}.grid-3{grid-template-columns:1fr 1fr}.navlinks{display:none}.container{padding:0 18px}}
+    @media (max-width:560px){.grid-3{grid-template-columns:1fr}.headline h1{font-size:28px}}
+
+    /* small helpers */
+    .muted{color:var(--muted)}
+    .small{font-size:13px}
+    .pill{display:inline-flex;align-items:center;gap:8px;padding:8px 10px;border-radius:999px;background:rgba(11,107,58,0.06);color:var(--green);font-weight:600}
+
+    /* popups */
+    .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.45);z-index:100}
+    .modal.show{display:flex}
+    .modal-card{width:920px;max-width:94%;background:white;border-radius:12px;padding:20px}
+    .modal-close{background:transparent;border:0;font-size:22px;cursor:pointer}
+
+    /* carousel */
+    .carousel{display:flex;gap:12px;overflow:hidden}
+    .carousel-track{display:flex;gap:12px;transition:transform .4s ease}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <div class="brand">
+          <div class="logo">KJ</div>
+          <div>
+            <div style="font-weight:700;color:var(--green)">KUPS JAYA BERKAH FARM</div>
+            <div class="small muted">Agroforestry & Peternakan Kambing</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px">
+          <div class="navlinks">
+            <a href="#home">HOME</a>
+            <a href="#profil">PROFIL</a>
+            <a href="#produk">PRODUK</a>
+            <a href="#layanan">LAYANAN</a>
+            <a href="#testimoni">TESTIMONI</a>
+            <a href="#quiz">QUIZ</a>
+            <a href="#kontak">KONTAK</a>
+          </div>
+          <a class="cta-wa" href="https://wa.me/6281367573358" target="_blank" rel="noopener">📱 PESAN VIA WA</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="home">
+    <section class="hero">
+      <div class="bg"></div>
+      <div class="overlay"></div>
+      <div class="container hero-inner">
+        <div class="hero-grid">
+          <div class="headline">
+            <h1>KUPS JAYA BERKAH FARM</h1>
+            <p>Kelompok Usaha Perhutanan Sosial binaan UPTD KPH Gedong Wani Dinas Kehutanan Provinsi Lampung dengan kegiatan usaha peternakan Kambing Etawa, Jawa Randu, Peranakan Etawa, Boerawa dan jenis lainnya. Pakan berasal dari kegiatan Agroforestry pada kawasan Hutan Produksi Register 40 Gedong Wani.</p>
+            <div class="hero-ctas">
+              <a class="btn btn-primary" href="https://wa.me/6281367573358" target="_blank">PESAN VIA WHATSAPP</a>
+              <button class="btn btn-ghost" id="openQuiz">TAKE YOUR STYLE QUIZ</button>
+            </div>
+            <div style="margin-top:14px" class="small muted">Lokasi: Desa Tanjung Harapan, Kec. Merbau Mataram, Kab. Lampung Selatan</div>
+          </div>
+
+          <aside>
+            <div class="card">
+              <h3 style="margin:0 0 8px;color:var(--green)">Hubungi Kami</h3>
+              <div class="small">WhatsApp: <a href="https://wa.me/6281367573358" target="_blank">0813 6757 3358</a></div>
+              <div style="height:12px"></div>
+              
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROFIL -->
+    <section id="profil">
+      <div class="container">
+        <div style="display:flex;gap:20px;align-items:center;flex-wrap:wrap">
+          <div style="flex:1;min-width:260px">
+            <h2 style="color:var(--green)">Profil Usaha</h2>
+            <p><strong>KUPS PETERNAKAN JAYA BERKAH FARM</strong><br>
+            Lokasi: Desa Tanjung Harapan, Kec. Merbau Mataram, Kab. Lampung Selatan<br>
+            Kontak WhatsApp: <a href="https://wa.me/6281367573358">0813 6757 3358</a></p>
+            <p class="muted">Fokus pada pembibitan & penggemukan Kambing Jawa Randu, Peranakan Etawa, Etawa, Boerawa dan varietas lainnya. Mengembangkan peternakan yang ramah lingkungan dengan praktik Agroforestry sehingga kelestarian Hutan terjaga, keterlibatan petani lokal sebagai anggota Kelompok Tani Hutan dan pemegang Persetujuan Pengelolaan Perhutanan Sosial, serta menggunakan SOP penanganan kesehatan hewan secara profesional.</p>
+          </div>
+          <div style="width:360px;min-width:260px">
+            <div class="product">
+              <h4>KUPS JAYA BERKAH FARM</h4>
+              <div class="meta">Perhutanan Sosial• Agroforestry• Peternakan Kambing</div>
+              <div style="height:18px"></div>
+              <div class="pill">✅ Hutan Lestari</div>
+              <div style="height:10px"></div>
+              <div class="pill">✅ Masyarakat Sejahtera</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+<!-- Container untuk gambar tengah -->
+<div style="
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  min-height: 100vh; 
+  padding: 20px; 
+  box-sizing: border-box;
+">
+  <img 
+    src="images/kambing1 (4).jpg" 
+    alt="Kandang kambing" 
+    style="
+      border-radius: 20px; 
+      max-width: 90%; 
+      height: auto; 
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    "
+  >
+</div>
+
+    <!-- PRODUK -->
+    <section id="produk">
+      <div class="container">
+        <h2 style="color:var(--green)">Produk Ternak (Katalog)</h2>
+        <div class="grid-3" style="margin-top:16px">
+
+          <!-- KAMBING JAWA RANDU -->
+          <div class="product" data-name="Jawa Randu">
+            <h4>KAMBING JAWA RANDU</h4>
+            <div class="meta">Berat: 25–40 kg | Harga: Rp 2,9 – 4 juta | Stok: 50 ekor</div>
+            <p style="margin-top:8px">Keunggulan: Adaptasi lingkungan, dwiguna (susu & daging), kesuburan tinggi, harga terjangkau, anak cepat besar. Ciri-ciri dari kambing jawarandu adalah memiiliki bobot yang lebih dari 40 kilogram, kambing jantan maupun kambing betina memiliki tanduk, bentuk telinga lebar yang terbuka, panjang, serta terkulai. Kambing jawarandu mampu untuk menghasilkan susu hingga 1,5 liter per-hari serta dagingnya bisa dimanfaatkan untuk konsumsi dan kurban.</p>
+            <div style="display:flex;gap:8px;margin-top:10px">
+              <button class="btn btn-primary" onclick="orderNow('KAMBING JAWA RANDU')">Pesan</button>
+              <button class="btn btn-ghost" onclick="showDetails('Jawa Randu')">Detail</button>
+            </div>
+          </div>
+
+          <!-- KAMBING PERANAKAN ETAWA -->
+          <div class="product" data-name="Peranakan Etawa">
+            <h4>KAMBING PERANAKAN ETAWA</h4>
+            <div class="meta">Berat: 35–50 kg | Harga: Rp 3,9 – 5 juta | Stok: 50 ekor</div>
+            <p style="margin-top:8px">Keunggulan: Ukuran besar, potensi susu tinggi, harga jual tinggi, adaptasi tropis, pemasaran luas. Ciri-ciri dari kambing PE, yaitu mempunyai warna bulu belang hitam, putih, merah, dan cokelat dengan bentuk telinga lebar yang terkulai. Secara fisik, dahi dan hidungnya berbentuk cembung. Lalu, kemampuan dari kambing PE untuk menghasilkan susu, yakni hingga tiga liter per hari sama seperti kambing etawa</p>
+            <div style="display:flex;gap:8px;margin-top:10px">
+              <button class="btn btn-primary" onclick="orderNow('KAMBING PERANAKAN ETAWA')">Pesan</button>
+              <button class="btn btn-ghost" onclick="showDetails('Peranakan Etawa')">Detail</button>
+            </div>
+          </div>
+
+          <!-- KAMBING ETAWA -->
+          <div class="product" data-name="Etawa">
+            <h4>KAMBING ETAWA</h4>
+            <div class="meta">Berat: 35–50 kg | Harga: Rp 3,9 – 5 juta | Stok: 50 ekor</div>
+            <p style="margin-top:8px">Keunggulan: Ciri dari kambing etawa, yaitu memiliki bentuk tubuh besar dengan bobot rata-rata mencapai hingga 91 kilogram pada kambing jantan dan 63 kilogram pada kambing betina. Postur tubuh dari kambing etawa cukup tinggi, sekitar 90 hingga 127 sentimeter. Adapun, bentuk telinganya terkulai ke bawah dengan hidung yang berbentuk cembung. Sebagai informasi tambahan, kambing etawa memiliki kemampuan untuk menghasilkan susu hingga tiga liter per hari</p>
+            <div style="display:flex;gap:8px;margin-top:10px">
+              <button class="btn btn-primary" onclick="orderNow('KAMBING PERANAKAN ETAWA')">Pesan</button>
+              <button class="btn btn-ghost" onclick="showDetails('Peranakan Etawa')">Detail</button>
+            </div>
+          </div>
+
+          <!-- KAMBING BOERAWA-->
+          <div class="product" data-name="Boerawa">
+            <h4>KAMBING BOERAWA</h4>
+            <div class="meta">Berat: 35–50 kg | Harga: Rp 3,9 – 5 juta | Stok: 50 ekor</div>
+            <p style="margin-top:8px">Kambing boerawa adalah jenis kambing hasil persilangan kambing jenis lain. Kambing boera jantan dengan kambing PE betina. Jenis kambing ini banyak dijadikan sebagai hewan ternak di daerah Lampung.</p>
+            <div style="display:flex;gap:8px;margin-top:10px">
+              <button class="btn btn-primary" onclick="orderNow('KAMBING PERANAKAN ETAWA')">Pesan</button>
+              <button class="btn btn-ghost" onclick="showDetails('Peranakan Etawa')">Detail</button>
+            </div>
+          </div>
+
+
+<img src="images/kambing1 (1).jpg" alt="Kandang kambing" style="border-radius:10px">
+<img src="images/kambing1 (2).jpg" alt="Kandang kambing" style="border-radius:10px">
+
+          <!-- Placeholder / Info Card -->
+          <div class="product">
+            <h4>Stok & Layanan</h4>
+            <p class="muted">Kami juga menerima pembelian secara grosir & eceran. Layanan antar ke lokasi tersedia.</p>
+            <div style="height:10px"></div>
+            <div class="pill">🚚 Antar ke lokasi</div>
+            <div style="height:10px"></div>
+            <div class="pill">📦 Pesanan Grosir & Eceran</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+<!-- LAYANAN -->
+<section id="layanan">
+  <div class="container">
+    <h2 style="color:var(--green)">Layanan Tambahan</h2>
+    <div style="display:flex;gap:18px;flex-wrap:wrap;margin-top:12px">
+      
+      <div class="card" style="flex:2;min-width:220px">
+        <h4>🚚 Layanan Antar</h4>
+        <p class="muted" style="font-size:16px">
+          Transportasi Khusus: Penyediaan kendaraan yang sesuai untuk mengangkut ternak, seringkali dilengkapi dengan fasilitas untuk kenyamanan dan keamanan kambing selama perjalanan. 
+Penanganan Ternak: Proses pemindahan kambing dari kandang ke kendaraan, dan sebaliknya, dilakukan dengan hati-hati oleh petugas yang terlatih untuk mencegah cedera pada hewan. 
+Aspek Kesehatan: Beberapa layanan juga mencakup pemeriksaan kesehatan hewan sebelum pengiriman untuk memastikan kambing dalam kondisi sehat, serta pengurusan dokumen terkait. 
+Kepatuhan Regulasi: Layanan ini juga harus memastikan kepatuhan terhadap peraturan pemerintah terkait pengangkutan hewan ternak.
+        </p>
+      </div>
+      
+      <div class="card" style="flex:2;min-width:220px">
+        <h4>📦 Grosir & Eceran</h4>
+        <p class="muted" style="font-size:16px">
+          Kami menyediakan kambing sehat dan berkualitas, siap untuk kebutuhan keluarga, peternakan, atau acara spesial Anda. Mulai dari pembelian satu ekor hingga puluhan ekor, kami menawarkan harga yang bersaing untuk memastikan Anda mendapatkan nilai terbaik.
+
+Pilihan Jumlah:
+
+Satuan: Cocok untuk konsumsi rumah tangga, aqiqah, atau kurban.
+
+Grosir/Puluhan ekor: Ideal untuk peternak atau pengusaha yang membutuhkan stok kambing dalam jumlah banyak.
+
+Keunggulan Kambing Kami:
+
+Sehat dan terawat dengan baik
+
+Berat dan ukuran sesuai standar pasar
+
+Ras pilihan, sesuai kebutuhan Anda
+
+Harga Kompetitif:
+
+Fleksibel sesuai jumlah pembelian
+
+Diskon menarik untuk pembelian dalam jumlah besar
+
+Transparan dan sesuai dengan kualitas
+
+Dengan layanan pengiriman yang cepat dan terpercaya, Anda bisa mendapatkan kambing pilihan tanpa repot. Segera hubungi kami untuk konsultasi jumlah, harga, dan pengiriman, agar kebutuhan Anda terpenuhi dengan tepat dan hemat biaya..
+        </p>
+      </div>
+      
+      <div class="card" style="flex:2;min-width:220px">
+        <h4>🩺 Perawatan Kesehatan</h4>
+        <p class="muted" style="font-size:16px">
+          Kesehatan kambing adalah prioritas utama kami. Setiap kambing yang kami jual dirawat secara profesional dengan standar kesehatan terbaik, sehingga Anda mendapatkan hewan yang sehat, kuat, dan siap untuk dibesarkan atau dikonsumsi.
+
+Perawatan Profesional:
+
+Pemberian pakan bernutrisi seimbang
+
+Vaksinasi lengkap sesuai jadwal
+
+Pemeriksaan rutin oleh tenaga ahli
+
+Keunggulan Kambing Sehat Kami:
+
+Bebas penyakit dan stres
+
+Tumbuh optimal dengan bobot ideal
+
+Kualitas daging dan ternak terjamin
+
+Manfaat bagi Pembeli:
+
+Hemat biaya karena kambing sudah dalam kondisi sehat
+
+Meminimalkan risiko kematian atau penyakit
+
+Siap untuk aqiqah, kurban, atau penggemukan
+
+Dengan perawatan yang terjamin, setiap kambing dari kami adalah investasi tepat bagi kesehatan ternak Anda. Pastikan Anda memilih kambing sehat untuk hasil maksimal dan kepuasan jangka panjang. Penanganan tepat akan membuat kambing sehat dan siap panen.
+        </p>
+      </div>
+      
+<!-- MANFAAT UTAMA -->
+<section id="manfaat" style="padding: 40px 15px; box-sizing: border-box; font-size:20px;">
+  <div class="container" style="max-width:1200px; margin:0 auto;">
+    <h2 style="color:var(--green); text-align:center; margin-bottom:30px;">Manfaat Utama</h2>
+    
+    <div style="display:flex; gap:20px; flex-wrap:wrap; justify-content:center;">
+      
+      <!-- Card 1 -->
+      <div class="card" style="flex:1 1 300px; min-width:220px; padding:20px; box-shadow:0 4px 10px rgba(0,0,0,0.1); border-radius:12px; background-color:#fff;">
+        <h4>✅ Menjaga Hutan tetap Lestari</h4>
+        <p class="muted" style="line-height:1.6; margin-top:10px;">
+          Agroforestri menjaga hutan tetap lestari dengan mengintegrasikan pepohonan kehutanan dengan tanaman pertanian atau peternakan dalam satu lahan, menciptakan sistem yang ramah lingkungan dan sosial.
+        </p>
+      </div>
+      
+      <!-- Card 2 -->
+      <div class="card" style="flex:1 1 300px; min-width:220px; padding:20px; box-shadow:0 4px 10px rgba(0,0,0,0.1); border-radius:12px; background-color:#fff;">
+        <h4>✅ Meningkatkan Ekonomi Petani Hutan</h4>
+        <p class="muted" style="line-height:1.6; margin-top:10px;">
+          Perhutanan sosial meningkatkan ekonomi petani hutan dengan membuka peluang usaha berbasis hutan dan memfasilitasi pemasaran produk sehingga pendapatan masyarakat meningkat.
+        </p>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+    <!-- TESTIMONI -->
+    <section id="testimoni">
+      <div class="container">
+        <h2 style="color:var(--green)">Testimoni Pelanggan</h2>
+        <div style="margin-top:16px">
+          <div class="carousel" id="testiCarousel">
+            <div class="carousel-track" id="carouselTrack">
+              <!-- card 1 -->
+              <div class="card" style="min-width:280px;">
+                <div class="testi">
+                  <div class="avatar"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=200&auto=format&fit=crop&ixlib=rb-4.0.3&s=11111111" alt="avatar"></div>
+                  <div>
+                    <strong>Ani S.</strong>
+                    <div class="small muted">"Kambing sehat & gemuk, Harga fair dengan layanan profesional, cocok untuk kebutuhan aqiqah anak saya!"</div>
+                  </div>
+                </div>
+              </div>
+              <!-- card 2 -->
+              <div class="card" style="min-width:280px;">
+                <div class="testi">
+                  <div class="avatar"><img src="https://images.unsplash.com/photo-1545996124-1b5b3f3c4e3f?q=80&w=200&auto=format&fit=crop&ixlib=rb-4.0.3&s=22222222" alt="avatar"></div>
+                  <div>
+                    <strong>Budi T.</strong>
+                    <div class="small muted">"Layanan antar cukup cepat, pesanan kambing sesuai deskripsi. Recommended."</div>
+                  </div>
+                </div>
+              </div>
+              <!-- card 3 -->
+              <div class="card" style="min-width:280px;">
+                <div class="testi">
+                  <div class="avatar"><img src="https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?q=80&w=200&auto=format&fit=crop&ixlib=rb-4.0.3&s=33333333" alt="avatar"></div>
+                  <div>
+                    <strong>Sarah M.</strong>
+                    <div class="small muted">"Stok banyak & harga terbaik, pelayanan ramah, perawatan rutin dan pakan alami dari agroforestry."</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div style="margin-top:8px;display:flex;gap:8px">
+            <button class="btn btn-ghost" onclick="prevTesti()">‹</button>
+            <button class="btn btn-ghost" onclick="nextTesti()">›</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUIZ -->
+    <section id="quiz">
+      <div class="container">
+        <h2 style="color:var(--green)">Cari Kambing yang cocok untuk Anda?</h2>
+        <p class="muted">Gunakan quiz untuk menemukan rekomendasi Kambing berdasarkan kebutuhan Anda.</p>
+        <div style="margin-top:14px">
+          <button class="btn btn-primary" id="takeQuizBtn">TAKE YOUR STYLE QUIZ</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section id="cta">
+      <div class="container" style="text-align:center">
+        <h2 style="color:var(--green)">Siap Memesan Kambing?</h2>
+        <p class="muted">Hubungi kami via WhatsApp untuk pesanan cepat dan diskusi stok.</p>
+        <div style="margin-top:12px">
+          <a class="btn btn-primary" href="https://wa.me/6281367573358" target="_blank">PESAN VIA WHATSAPP 0813 6757 3358</a>
+        </div>
+      </div>
+    </section>
+<!-- Container untuk 2 gambar simetris -->
+<div style="
+  display: flex;
+  justify-content: center;
+  gap: 1cm; /* jarak antar gambar */
+  flex-wrap: wrap; /* agar tetap responsif di layar kecil */
+  padding: 20px;
+  box-sizing: border-box;
+  min-height: 100vh;
+  align-items: center;
+">
+  <img 
+    src="images/kambing1 (9).jpg" 
+    alt="Kandang kambing" 
+    style="
+      border-radius: 10px;
+      height: 300px; /* tinggi sama untuk simetri */
+      width: auto;   /* lebar menyesuaikan agar proporsional */
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    "
+  >
+  <img 
+    src="images/kambing1 (3).jpg" 
+    alt="Kandang kambing" 
+    style="
+      border-radius: 10px;
+      height: 300px; /* tinggi sama untuk simetri */
+      width: auto;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    "
+  >
+</div>
+
+<!-- KONTAK / FOOTER -->
+<footer id="kontak" style="background-color:#f9f9f9; padding: 20px 15px; font-size:16px; box-sizing:border-box;">
+  <div class="container" style="
+    display: flex; 
+    flex-wrap: wrap; 
+    justify-content: space-between; 
+    align-items: center; 
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  ">
+    
+    <!-- Informasi Kontak -->
+    <div style="flex: 1 1 300px; min-width: 250px;">
+      <strong style="display:block; margin-bottom:8px;">KUPS PETERNAKAN JAYA BERKAH FARM</strong>
+      <div class="muted" style="margin-bottom:8px;">Desa Tanjung Harapan, Kec. Merbau Mataram, Kab. Lampung Selatan</div>
+      <div>WhatsApp: <a href="https://wa.me/6281367573358" style="color:var(--green); text-decoration:none;">0813 6757 3358</a></div>
+    </div>
+
+    <!-- Hak Cipta -->
+    <div style="fle
+
+  <!-- MODAL: QUIZ / POPUP -->
+  <div class="modal" id="quizModal">
+    <div class="modal-card">
+      <div style="display:flex;align-items:center;justify-content:space-between">
+        <h3 style="margin:0;color:var(--green)">Take Your Style Quiz</h3>
+        <button class="modal-close" onclick="closeModal('quizModal')">✕</button>
+      </div>
+      <div style="margin-top:12px">
+        <p class="small muted">Klik tombol di bawah untuk mengisi Google Form (10 pertanyaan). Setelah submit, hasil akan dikirimkan ke email Anda sesuai pengaturan Google Form.</p>
+        <ol style="margin-top:12px">
+          <!-- Example 10 questions provided for convenience -->
+        </ol>
+        <div style="margin-top:12px;display:flex;gap:8px">
+          <a class="btn btn-primary" id="googleFormBtn" href="#" target="_blank">Buka Google Form</a>
+          <button class="btn btn-ghost" onclick="closeModal('quizModal')">Tutup</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: PRODUCT DETAIL -->
+  <div class="modal" id="detailModal">
+    <div class="modal-card">
+      <div style="display:flex;align-items:center;justify-content:space-between">
+        <h3 id="detailTitle" style="margin:0;color:var(--green)">Detail Produk</h3>
+        <button class="modal-close" onclick="closeModal('detailModal')">✕</button>
+      </div>
+      <div id="detailContent" style="margin-top:12px"></div>
+    </div>
+  </div>
+
+  <script>
+    // ----------------- CONFIG -----------------
+    // GANTI googleFormUrl dengan link Google Form Anda (buat Form di Google Forms & paste link di sini)
+    const googleFormUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSfnDzP-j2gqVrN8jI6jeJYpgjkqu42g4HbAMLAcAe0alRnBxw/viewform';
+    document.getElementById('googleFormBtn').href = googleFormUrl;
+    document.getElementById('takeQuizBtn').addEventListener('click',()=>openModal('quizModal'));
+    document.getElementById('openQuiz').addEventListener('click',()=>openModal('quizModal'));
+
+    function openModal(id){document.getElementById(id).classList.add('show')}
+    function closeModal(id){document.getElementById(id).classList.remove('show')}
+
+    // ----------------- PRODUCT DETAIL -----------------
+    function showDetails(name){
+      const content = document.getElementById('detailContent');
+      let html = '';
+      if(name==='Jawa Randu'){
+        html = `<p><strong>Keunggulan:</strong> Adaptasi lingkungan, dwiguna (susu & daging), kesuburan tinggi, harga terjangkau, anak cepat besar.</p>
+        <p><strong>Berat:</strong> 25–40 kg</p>
+        <p><strong>Harga:</strong> Rp 2,9 – 5 juta</p>
+        <p><strong>Stok:</strong> 50 ekor</p>
+        <a class='btn btn-primary' href='https://wa.me/6281367573358?text=Halo%20saya%20ingin%20memesan%20Kambing%20Jawa%20Randu' target='_blank'>Pesan via WA</a>`
+      } else if(name==='Peranakan Etawa'){
+        html = `<p><strong>Keunggulan:</strong> Ukuran besar, potensi susu tinggi, harga jual tinggi, adaptasi tropis, pemasaran luas.</p>
+        <p><strong>Berat:</strong> 35–50 kg</p>
+        <p><strong>Harga:</strong> Rp 2,9 – 5 juta</p>
+        <p><strong>Stok:</strong> 50 ekor</p>
+        <a class='btn btn-primary' href='https://wa.me/6281367573358?text=Halo%20saya%20ingin%20memesan%20Kambing%20Peranakan%20Etawa' target='_blank'>Pesan via WA</a>`
+      } else {
+        html = '<p>Informasi produk tidak ditemukan.</p>'
+      }
+      document.getElementById('detailTitle').innerText = name;
+      content.innerHTML = html;
+      openModal('detailModal');
+    }
+
+    // ----------------- ORDER NOW -----------------
+    function orderNow(item){
+      const text = encodeURIComponent('Halo, saya ingin memesan: ' + item + '. Mohon info stok & harga.');
+      window.open('https://wa.me/6281367573358?text=' + text,'_blank');
+    }
+
+    // ----------------- TESTIMONIAL CAROUSEL -----------------
+    const track = document.getElementById('carouselTrack');
+    let index = 0;
+    function updateCarousel(){
+      const cardWidth = 300; // approx
+      track.style.transform = 'translateX(' + (-index * (cardWidth + 12)) + 'px)';
+    }
+    function nextTesti(){
+      const max = track.children.length - 1;
+      if(index < max) index++; else index = 0;
+      updateCarousel();
+    }
+    function prevTesti(){
+      if(index>0) index--; else index = track.children.length - 1;
+      updateCarousel();
+    }
+
+    // auto advance
+    setInterval(()=>{ nextTesti() }, 6000);
+
+    // ----------------- SMOOTH SCROLL FOR NAV LINKS -----------------
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click',function(e){
+        e.preventDefault(); const id = this.getAttribute('href').slice(1); const el = document.getElementById(id);
+        if(el) window.scrollTo({top: el.offsetTop - 76, behavior:'smooth'})
+      })
+    })
+
+    // ----------------- NEXT/IMAGE NOTE -----------------
+    /*
+      Catatan untuk migrasi ke Next.js:
+      - Ganti <img src="..."> dengan <Image src={...} alt="..." width={...} height={...} /> dari 'next/image' untuk optimasi.
+      - Pastikan menaruh file gambar di /public atau gunakan remotePatterns pada next.config.js.
+      - File ini dirancang agar mudah di-convert menjadi komponen React/Next.
+    */
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
